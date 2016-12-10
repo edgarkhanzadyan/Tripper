@@ -19,6 +19,7 @@ import GenSchedule from './lib/GenSchedule';
 import NewSchedule from './lib/NewSchedule';
 import NewScheduleShare from './lib/NewScheduleShare';
 import Finish from './lib/Finish';
+import HistoryTrip from './lib/HistoryTrip';
 
 export default class Tripper extends Component {
 
@@ -35,10 +36,18 @@ export default class Tripper extends Component {
       return <NewScheduleShare navigator={navigator} {...route.passProps} />;
     }else if(route.name === 'Finish'){
       return <Finish navigator={navigator} {...route.passProps} />;
+    }else if(route.name === '0'){
+      return <HistoryTrip navigator={navigator} {...route.passProps} />;
+    }else if(route.name === '1'){
+      return <HistoryTrip navigator={navigator} {...route.passProps} />;
     }
   }
   configureScene(route, routeStack){
     if(route.name === 'NewScheduleShare') {
+      return Navigator.SceneConfigs.FloatFromBottom
+    }else if(route.name === '0') {
+      return Navigator.SceneConfigs.FloatFromBottom
+    }else if(route.name === '1') {
       return Navigator.SceneConfigs.FloatFromBottom
     }
     return Navigator.SceneConfigs.PushFromRight
