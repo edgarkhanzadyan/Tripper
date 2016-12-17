@@ -20,37 +20,59 @@ import NewSchedule from './lib/NewSchedule';
 import NewScheduleShare from './lib/NewScheduleShare';
 import Finish from './lib/Finish';
 import HistoryTrip from './lib/HistoryTrip';
+import MarkerSlide from './lib/MarkerSlide';
 
 export default class Tripper extends Component {
-
   renderScene(route, navigator) {
-    if(route.name === 'CreateAccount') {
-      return <CreateAccount navigator={navigator} {...route.passProps} />;
-    }else if(route.name === 'History') {
-      return <History navigator={navigator} {...route.passProps} />;
-    }else if(route.name === 'GenSchedule') {
-      return <GenSchedule navigator={navigator} {...route.passProps} />;
-    }else if(route.name === 'NewSchedule'){
-      return <NewSchedule navigator={navigator} {...route.passProps} />;
-    }else if(route.name === 'NewScheduleShare'){
-      return <NewScheduleShare navigator={navigator} {...route.passProps} />;
-    }else if(route.name === 'Finish'){
-      return <Finish navigator={navigator} {...route.passProps} />;
-    }else if(route.name === '0'){
-      return <HistoryTrip navigator={navigator} {...route.passProps} />;
-    }else if(route.name === '1'){
-      return <HistoryTrip navigator={navigator} {...route.passProps} />;
+    switch (route.name) {
+      case 'CreateAccount':
+        return <CreateAccount navigator={navigator} {...route.passProps} />;
+        break;
+      case 'History':
+        console.log(MarkerSlide);
+        return <History navigator={navigator} {...route.passProps} />;
+        break;
+      case 'GenSchedule':
+        return <GenSchedule navigator={navigator} {...route.passProps} />;
+        break;
+      case 'NewSchedule':
+        return <NewSchedule navigator={navigator} {...route.passProps} />;
+        break;
+      case 'NewScheduleShare':
+        return <NewScheduleShare navigator={navigator} {...route.passProps} />;
+        break;
+      case 'Finish':
+        return <Finish navigator={navigator} {...route.passProps} />;
+        break;
+      case 'MarkerSlide':
+        return <MarkerSlide navigator={navigator} image={route.image} history={route.history} preference={route.preference} time={route.time} money={route.money} {...route.passProps} />;
+        break;
+      case '0':
+        return <HistoryTrip navigator={navigator} {...route.passProps} />;
+        break;
+      case '1':
+        return <HistoryTrip navigator={navigator} {...route.passProps} />;
+        break;
     }
   }
   configureScene(route, routeStack){
-    if(route.name === 'NewScheduleShare') {
-      return Navigator.SceneConfigs.FloatFromBottom
-    }else if(route.name === '0') {
-      return Navigator.SceneConfigs.FloatFromBottom
-    }else if(route.name === '1') {
-      return Navigator.SceneConfigs.FloatFromBottom
+    switch (route.name) {
+      case 'NewScheduleShare':
+        return Navigator.SceneConfigs.FloatFromBottom;
+        break;
+      case '0':
+        return Navigator.SceneConfigs.FloatFromBottom;
+        break;
+      case '1':
+        return Navigator.SceneConfigs.FloatFromBottom;
+        break;
+      case 'MarkerSlide':
+        return Navigator.SceneConfigs.FloatFromBottom;
+        break;
+      default:
+        return Navigator.SceneConfigs.PushFromRight;
+        break;
     }
-    return Navigator.SceneConfigs.PushFromRight
   }
   render() {
     return (
@@ -62,7 +84,6 @@ export default class Tripper extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
